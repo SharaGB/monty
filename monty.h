@@ -1,11 +1,12 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _GNU_SOURCE
+
 #include <stdio.h>	/* prinf, fprinf, stderr, FILE, feof, fopen*/
 #include <stdlib.h> /* exit, malloc, free, atoi*/
 #include <string.h> /* strtok*/
 #include <ctype.h>	/* isdigit*/
 
-#define DELIMITER " \t\n"
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -36,26 +37,17 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct global_structure - extern global variable.
- * @data: Data readed from the file.
- * @array_st: Array.
- * @fd_st: file readed.
- *
-typedef struct global_s
-{
-int data;
-char **array;
-} global_t;
+int global;
 
-extern global_t global;*/
-
-void get_func(char *args, stack_t **pila, unsigned int line_number);
-void fpush(stack_t **pila, unsigned int line_number);
-void fpall(stack_t **pila, unsigned int line_number __attribute__((unused)));
-void fpint(stack_t **pila, unsigned int line_number);
-void fpop(stack_t **pila, unsigned int line_number);
+void get_func(stack_t **stack, unsigned int line, char *args);
+void fpush(stack_t **stack, unsigned int line_number);
+void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)));
+void fpint(stack_t **stack, unsigned int line_number);
+void fpop(stack_t **stack, unsigned int line_number);
+void fswap(stack_t **stack, unsigned int line_number);
 
 char *_strdup(char *str);
+int is_digit(char *digit);
+int _strlen(stack_t *s);
 
 #endif /* MONTY_H */
