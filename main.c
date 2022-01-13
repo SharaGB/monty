@@ -4,14 +4,14 @@
  * @argv: List of past arguments
  * Return: File open
  */
-int f_open(char *argv)
+FILE *f_open(char *argv)
 {
 	FILE *fp = NULL;
 
-	fp = fopen(argv[1], "r");
+	fp = fopen(argv, "r");
 	if (!fp)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv);
 		exit(EXIT_FAILURE);
 	}
 	return (fp);
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fp = open(argv[1]);
+	fp = f_open(argv[1]);
 	for ( ; getline(&str, &size, fp) != -1; line++)
 	{
 		ptr = malloc(sizeof(char *) * 2);
