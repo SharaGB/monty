@@ -3,7 +3,7 @@
  * get_func - Structure of the functions
  * @args: Arguments passed to the function
  * @pila: Header of the list(stack)
- * @data: Line data
+ * @line_number: Line data
  * Return: The text that can be read, or 1 if it fails
  */
 void get_func(char *args, stack_t **pila, unsigned int line_number)

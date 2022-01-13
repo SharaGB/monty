@@ -32,7 +32,7 @@ void fpush(stack_t **pila, unsigned int line_number)
 /**
  * fpall - Prints all the values on the stack.
  * @pila: Header of the list(stack)
- * @data: Line data
+ * @line_number: Line data
  */
 void fpall(stack_t **pila, unsigned int line_number __attribute__((unused)))
 {
@@ -48,7 +48,7 @@ void fpall(stack_t **pila, unsigned int line_number __attribute__((unused)))
 /**
  * fpint - Prints the value at the top of the stack.
  * @pila: Header of the list(stack)
- * @data: Line data
+ * @line_number: Line data
  */
 void fpint(stack_t **pila, unsigned int line_number)
 {
@@ -66,7 +66,7 @@ void fpint(stack_t **pila, unsigned int line_number)
 /**
  * fpop - Removes the top element of the stack.
  * @pila: Header of the list(stack)
- * @data: Line data
+ * @line_number: Line data
  */
 void fpop(stack_t **pila, unsigned int line_number)
 {
