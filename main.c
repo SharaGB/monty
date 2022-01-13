@@ -32,11 +32,7 @@ int main(int argc __attribute__((unused)), char **argv)
 		if (tokenline != NULL)
 		{
 			get_func(tokenline, &pila, tokenline[5] - '0');
-			tokens[line] = _strdup(tokenline); /*Recorre la str en cada posición*/
-			tokenline = strtok(NULL, DELIMITER);
-			line++;
 		}
-		tokens[line] = NULL;
 		line++;
 	}
 	fclose(fp);
