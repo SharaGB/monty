@@ -4,7 +4,6 @@
  * @stack: Header of the list(stack)
  * @line: Line data
  * @args: Arguments passed to the function
- * @help: Check number
  * Return: The text that can be read, or 1 if it fails
  */
 void get_func(stack_t **stack, unsigned int line, char *args)

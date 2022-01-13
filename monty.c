@@ -13,12 +13,6 @@ void fpush(stack_t **stack, unsigned int line_number __attribute__((unused)))
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	/*if (!line_number)
-	{
-		printf("es acá\n");
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}*/
 	if (!*stack)
 	{
 		nn->n = global;
