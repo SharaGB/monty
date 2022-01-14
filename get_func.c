@@ -15,13 +15,10 @@ void get_func(stack_t **stack, unsigned int line, char *args)
 		{"pint", fpint},
 		{"pop", fpop},
 		{"swap", fswap},
-		{"fadd", fadd},
+		{"add", fadd},
+		{"nop", fnop},
 		{NULL, NULL}};
 
-	if (*args == '#')
-	{
-		return;
-	}
 	while (get_op[i].opcode != NULL)
 	{
 		if (strcmp(args, get_op[i].opcode) == 0)
