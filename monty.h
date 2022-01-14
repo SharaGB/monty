@@ -1,11 +1,18 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define DELIMITER " \t\n"
 #define _GNU_SOURCE
+#define STACK 0
+#define QUEUE 1
 
 #include <stdio.h>	/* prinf, fprinf, stderr, FILE, feof, fopen*/
 #include <stdlib.h> /* exit, malloc, free, atoi*/
 #include <string.h> /* strtok*/
 #include <ctype.h>	/* isdigit*/
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -37,8 +44,18 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-int global;
+/**
+ * struct global_s - Variable global
+ * @data: Determine if in stack vs queue mode
+ * @size: length of the stack
+ */
+typedef struct global_s
+{
+	int data;
+	size_t size;
+} global_t;
 
+extern global_t global;
 void get_func(stack_t **stack, unsigned int line, char *args);
 void fpush(stack_t **stack, unsigned int line_number);
 void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)));
@@ -46,10 +63,16 @@ void fpint(stack_t **stack, unsigned int line_number);
 void fpop(stack_t **stack, unsigned int line_number);
 void fswap(stack_t **stack, unsigned int line_number);
 void fadd(stack_t **stack, unsigned int line_number);
+void fnop(stack_t **stack, unsigned int line_number);
+void fsub(stack_t **stack, unsigned int line_number);
+void fdiv(stack_t **stack, unsigned int line_number);
+void fmul(stack_t **stack, unsigned int line_number);
+void fmod(stack_t **stack, unsigned int line_number);
 
 int is_digit(char *digit);
-int _strlen(stack_t *s);
-void free_stack(stack_t **head);
-void error_handler(char *err_m, unsigned int line_err);
+stack_t *add_node(stack_t **stack, const int n);
+void free_stack(int fre, void *args);
+void frees(int fre, void *args);
+void fp_close(int status, void *arg);
 
 #endif /* MONTY_H */
