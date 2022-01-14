@@ -24,40 +24,33 @@ FILE *f_open(char *argv)
  */
 int main(int argc, char **argv)
 {
-	stack_t *stack = NULL;
-	FILE *fp = NULL;
 	size_t size = 0;
-	char *delimiter = " \t\n", *str = NULL, **ptr = NULL;
-	unsigned int line = 1;
-	int arg = 0;
+	FILE *fp = NULL;
+	stack_t *stack = NULL;
+	unsigned int line = 0;
+	char *str = NULL, *func = NULL;
 
+	global.data = 0;
+	global.size = 0;
 	if (argc != 2)
 	{
-		error_handler("USAGE: monty file", 0);
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
 	}
 	fp = f_open(argv[1]);
-	for ( ; getline(&str, &size, fp) != -1; line++)
+	on_exit(frees, &str);
+	on_exit(free_stack, &stack);
+	/* on_exit(fp_close, fp); */
+	while (getline(&str, &size, fp) != -1)
 	{
-		ptr = malloc(sizeof(char *) * 2);
-		if (ptr == NULL)
+		func = strtok(str, DELIMITER);
+		if (func != NULL && func[0] != '#')
 		{
-			error_handler("Error: malloc failed", 0);
+			get_op(func, &stack, line);
 		}
-		ptr[0] = strtok(str, delimiter);
-		ptr[1] = strtok(NULL, delimiter);
-		if (ptr[1] != NULL)
-		{
-			arg = is_digit(ptr[1]);
-			if (arg == -1)
-			{
-				error_handler("usage: push integer", 0);
-			}
-			global = atoi(ptr[1]);
-		}
-		get_func(&stack, line, ptr[0]);
-		free(ptr);
+		line++;
+
 	}
-	free(str);
 	fclose(fp);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
