@@ -15,6 +15,7 @@ void get_func(stack_t **stack, unsigned int line, char *args)
 		{"pint", fpint},
 		{"pop", fpop},
 		{"swap", fswap},
+		{"fadd", fadd},
 		{NULL, NULL}};
 
 	if (*args == '#')

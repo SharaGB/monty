@@ -45,6 +45,7 @@ void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void fpint(stack_t **stack, unsigned int line_number);
 void fpop(stack_t **stack, unsigned int line_number);
 void fswap(stack_t **stack, unsigned int line_number);
+void fadd(stack_t **stack, unsigned int line_number);
 
 int is_digit(char *digit);
 int _strlen(stack_t *s);
