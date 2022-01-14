@@ -48,6 +48,7 @@ void fswap(stack_t **stack, unsigned int line_number);
 
 int is_digit(char *digit);
 int _strlen(stack_t *s);
+void free_stack(stack_t **head);
 void error_handler(char *err_m, unsigned int line_err);
 
 #endif /* MONTY_H */

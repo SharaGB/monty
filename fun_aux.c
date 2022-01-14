@@ -31,34 +31,16 @@ int is_digit(char *digit)
  * free_stack - Frees the stack
  * @head: The stack
  */
-void free_stack(stack_t *head)
+void free_stack(stack_t **head)
 {
-	stack_t *tmp = head;
+	stack_t *tmp;
 
-	while (tmp != NULL)
+	while (*head != NULL)
 	{
-		tmp = tmp->next;
-		free(head);
-		head = tmp;
+		tmp = (*head);
+		*head = tmp->prev;
+		free(tmp);
 	}
-}
-
-/**
- * _strlen - The length of a string
- * @s: Check the string
- *
- * Return: Always 0
- */
-int _strlen(stack_t *s)
-{
-	int len = 0;
-
-	while (s)
-	{
-		s = s->next;
-		len++;
-	}
-	return (len);
 }
 
 /**
