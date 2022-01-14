@@ -23,21 +23,18 @@ int is_digit(char *digit)
 }
 
 /**
- * add_node - Add a new node.
+ * new_node - Add a new node.
  * @stack: Header of the list(stack)
  * @n: Value new node
  * Return: pointer to the new node, or NULL on failure
  */
-stack_t *add_node(stack_t **stack, const int n)
+stack_t *new_node(stack_t **stack, int n)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
 	if (!new_node)
 	{
-		return (NULL);
-	}
-	if (!stack)
-	{
+		free(new_node);
 		return (NULL);
 	}
 	new_node->n = n;
@@ -51,38 +48,24 @@ stack_t *add_node(stack_t **stack, const int n)
 		(*stack)->next = new_node;
 		new_node->prev = *stack;
 	}
-	if (global.data == STACK || global.size == 0)
-	{
-		*stack = new_node;
-	}
+	*stack = new_node;
 	return (new_node);
 }
 
 /**
- * free_stack - Frees the stack
- * @fre: Exit check
- * @args: Line arguments
+ * free_matrix - Free the array
+ *@head: Free the array
  */
-void free_stack(int fre, void *args)
+void free_matrix(char **head)
 {
-	stack_t **stack;
-	stack_t *next;
+	int position = 0;
 
-	(void)fre;
-
-	stack = (stack_t **)args;
-	if (*stack)
+	while (head[position])
 	{
-		(*stack)->prev->next = NULL;
-		(*stack)->prev = NULL;
+		free(head[position]);
+		position++;
 	}
-	while (*stack != NULL)
-	{
-		next = (*stack)->next;
-		free(*stack);
-		*stack = next;
-	}
-	global.size = 0;
+	free(head);
 }
 
 /**
@@ -99,4 +82,60 @@ void frees(int fre, void *args)
 	{
 		free(*ptr);
 	}
+}
+
+/**
+ * free_stack - Function that frees a list
+ * @stack: Free stack
+ */
+void free_stack(stack_t *stack)
+{
+	stack_t *tmp;
+
+	while (stack)
+	{
+		tmp = stack;
+		stack = stack->next;
+		free(tmp);
+	}
+}
+
+/**
+ * add_dnodeint_end - Adds a new node at the end of a list
+ * @head: Head of the list
+ * @n: Value to add to the new node
+ * Return: Address of the new element, or NULL if it failed
+ */
+stack_t *add_dnodeint_end(stack_t **head, const int n)
+{
+	stack_t *tmp = NULL;
+	stack_t *new_node = malloc(sizeof(stack_t));
+
+	if (!new_node)
+	{
+		free(new_node);
+		return (NULL);
+	}
+	if (!head)
+	{
+		return (NULL);
+	}
+	new_node->n = n;
+	new_node->next = NULL;
+	if (!*head)
+	{
+		*head = new_node;
+		(*head)->prev = NULL;
+		return (new_node);
+	}
+	tmp = *head;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = new_node;
+	new_node->prev = tmp;
+	tmp = new_node;
+
+	return (new_node);
 }

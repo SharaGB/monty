@@ -7,17 +7,16 @@
 void f_push(stack_t **stack, unsigned int line_number)
 {
 	char *digit = NULL;
-	char *delimiter = " \t\n";
 	int i = 0;
 
-	digit = strtok(NULL, delimiter);
+	digit = strtok(NULL, " \t\n\r");
 	if (!digit || is_digit(digit))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	i = atoi(digit);
-	if (!add_node(stack, i))
+	if (!new_node(stack, i))
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
@@ -87,6 +86,7 @@ void f_swap(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 
+	printf("<<<%ld\n", global.size);
 	if (global.size < 2)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);

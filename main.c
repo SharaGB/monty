@@ -28,10 +28,9 @@ int main(int argc, char **argv)
 {
 	size_t size = 0;
 	FILE *fp = NULL;
-	stack_t *stack = NULL;
 	unsigned int line = 1;
+	stack_t *stack = NULL;
 	char *str = NULL, *func = NULL;
-	char *delimiter = " \t\n";
 
 	global.data = 0;
 	global.size = 0;
@@ -41,11 +40,9 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	fp = f_open(argv[1]);
-	on_exit(frees, &str);
-	on_exit(free_stack, &stack);
 	while (getline(&str, &size, fp) != -1)
 	{
-		func = strtok(str, delimiter);
+		func = strtok(str, " \t\n\r");
 		if (func != NULL && func[0] != '#')
 		{
 			get_func(func, &stack, line);
@@ -53,6 +50,8 @@ int main(int argc, char **argv)
 		line++;
 
 	}
+	on_exit(frees, &str);
+	free_stack(stack);
 	fclose(fp);
 	exit(EXIT_SUCCESS);
 }

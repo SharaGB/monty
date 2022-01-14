@@ -1,1 +1,3 @@
- push 1; pall Holberton School !
+push -1024
+push 2
+pallg

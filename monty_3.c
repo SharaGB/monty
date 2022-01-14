@@ -6,7 +6,7 @@
  */
 void f_mod(stack_t **stack, unsigned int line_number)
 {
-	int i;
+	int i = 0;
 
 	if (global.size < 2)
 	{
@@ -21,4 +21,17 @@ void f_mod(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	(*stack)->n %= i;
+}
+
+/**
+ * f_rotl - Rotates the stack to the top.
+ * @stack: Header of the list(stack)
+ * @line_number: Line data
+ */
+void f_rotl(stack_t **stack, unsigned int line_number __attribute__((unused)))
+{
+	if (*stack)
+	{
+		*stack = (*stack)->next;
+	}
 }

@@ -72,11 +72,14 @@ void f_sub(stack_t **stack, unsigned int line_number);
 void f_div(stack_t **stack, unsigned int line_number);
 void f_mul(stack_t **stack, unsigned int line_number);
 void f_mod(stack_t **stack, unsigned int line_number);
+void f_rotl(stack_t **stack, unsigned int line_number __attribute__((unused)));
 
 FILE *f_open(char *argv);
 int is_digit(char *digit);
-stack_t *add_node(stack_t **stack, const int n);
-void free_stack(int fre, void *args);
+stack_t *new_node(stack_t **stack, int n);
+void free_matrix(char **head);
 void frees(int fre, void *args);
+void free_stack(stack_t *stack);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 
 #endif /* MONTY_H */
