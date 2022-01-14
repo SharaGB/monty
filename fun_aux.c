@@ -62,8 +62,9 @@ int _strlen(stack_t *s)
 }
 
 /**
- * @brief 
- * 
+ * error_handler - Function that error handler.
+ * @err_m: Error message
+ * @line_err: Line data
  */
 void error_handler(char *err_m, unsigned int line_err)
 {
