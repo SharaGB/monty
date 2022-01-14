@@ -1,39 +1,5 @@
 #include "monty.h"
 /**
- * _strdup - Contains a copy of the string
- * @str: Check string
- * Return: A pointer
- */
-char *_strdup(char *str)
-{
-	int len = 0;
-	char *ptr;
-	char *dub;
-
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-	while (str[len] != '\0')
-	{
-		len++;
-	}
-	ptr = malloc(sizeof(char) * len + 1);
-	if (ptr == NULL)
-	{
-		return (NULL);
-	}
-	dub = ptr;
-	while (*str)
-	{
-		*dub = *str;
-		dub++;
-		str++;
-	}
-	*dub = '\0';
-	return (ptr);
-}
-/**
  * is_digit - Checks for a digit
  * @digit: Check number
  * Return: The check number
@@ -60,7 +26,6 @@ int is_digit(char *digit)
 	}
 	return (1);
 }
-
 
 /**
  * free_stack - Frees the stack
@@ -94,4 +59,18 @@ int _strlen(stack_t *s)
 		len++;
 	}
 	return (len);
+}
+
+/**
+ * @brief 
+ * 
+ */
+void error_handler(char *err_m, unsigned int line_err)
+{
+	if (line_err)
+	{
+		fprintf(stderr, "L%d: ", line_err);
+	}
+	fprintf(stderr, "%s\n", err_m);
+	exit(EXIT_FAILURE);
 }

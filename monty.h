@@ -46,8 +46,8 @@ void fpint(stack_t **stack, unsigned int line_number);
 void fpop(stack_t **stack, unsigned int line_number);
 void fswap(stack_t **stack, unsigned int line_number);
 
-char *_strdup(char *str);
 int is_digit(char *digit);
 int _strlen(stack_t *s);
+void error_handler(char *err_m, unsigned int line_err);
 
 #endif /* MONTY_H */

@@ -10,8 +10,7 @@ void fpush(stack_t **stack, unsigned int line_number __attribute__((unused)))
 
 	if (!nn)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		error_handler("Error: malloc failed", line_number);
 	}
 	if (!*stack)
 	{
@@ -55,8 +54,7 @@ void fpint(stack_t **stack, unsigned int line_number)
 {
 	if (!stack)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
+		error_handler("can't pint, stack empty", line_number);
 	}
 	else
 	{
@@ -75,17 +73,15 @@ void fpop(stack_t **stack, unsigned int line_number)
 
 	if (!*stack)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
+		error_handler("can't pop an empty stack", line_number);
 	}
-	if (stk->next)
+	*stack = (*stack)->prev;
+	if ((*stack) != NULL)
 	{
-		*stack = (*stack)->next;
-		free(stk);
-		(*stack)->prev = NULL;
+		(*stack)->next = NULL;
 	}
-	free(*stack);
-	*stack = NULL;
+	free(stk);
+
 }
 
 /**
@@ -95,24 +91,13 @@ void fpop(stack_t **stack, unsigned int line_number)
  */
 void fswap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = NULL;
-	int len = 0;
+	int top = 0;
 
-	len = _strlen(*stack);
-	if (len < 2)
+	if (!*stack || !(*stack)->prev)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		error_handler("can't swap, stack too short", line_number);
 	}
-	tmp = *stack;
-	tmp = (*stack)->next;
-	(*stack)->next = tmp->next;
-	tmp->prev = NULL;
-	if (tmp->next)
-	{
-		tmp->next->prev = *stack;
-	}
-	(*stack)->prev = tmp;
-	tmp->next = *stack;
-	*stack = tmp;
+	top = (*stack)->n;
+	(*stack)->n = (*stack)->prev->n;
+	(*stack)->prev->n = top;
 }

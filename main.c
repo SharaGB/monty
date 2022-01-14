@@ -33,8 +33,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		error_handler("USAGE: monty file", 0);
 	}
 	fp = f_open(argv[1]);
 	for ( ; getline(&str, &size, fp) != -1; line++)
@@ -42,8 +41,7 @@ int main(int argc, char **argv)
 		ptr = malloc(sizeof(char *) * 2);
 		if (ptr == NULL)
 		{
-			fprintf(stderr, "Error: malloc failed\n");
-			exit(EXIT_FAILURE);
+			error_handler("Error: malloc failed", 0);
 		}
 		ptr[0] = strtok(str, delimiter);
 		ptr[1] = strtok(NULL, delimiter);
@@ -52,8 +50,7 @@ int main(int argc, char **argv)
 			arg = is_digit(ptr[1]);
 			if (arg == -1)
 			{
-				fprintf(stderr, "L%d: usage: push integer\n", line);
-				exit(EXIT_FAILURE);
+				error_handler("usage: push integer", 0);
 			}
 			global = atoi(ptr[1]);
 		}

@@ -1,4 +1,6 @@
-push n
+push Hola Hola
+push
+push 1
 push 2
 push 3
 pall
