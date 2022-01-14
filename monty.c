@@ -36,7 +36,7 @@ void f_pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
-		tmp = tmp->prev;
+		tmp = tmp->next;
 	}
 }
 
@@ -86,7 +86,6 @@ void f_swap(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 
-	printf("<<<%ld\n", global.size);
 	if (global.size < 2)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
