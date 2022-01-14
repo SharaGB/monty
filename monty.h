@@ -61,13 +61,13 @@ typedef struct global_s
 
 extern global_t global;
 void get_func(char *op, stack_t **stack, unsigned int line_number);
-void fpush(stack_t **stack, unsigned int line_number);
-void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)));
-void fpint(stack_t **stack, unsigned int line_number);
-void fpop(stack_t **stack, unsigned int line_number);
-void fswap(stack_t **stack, unsigned int line_number);
+void f_push(stack_t **stack, unsigned int line_number);
+void f_pall(stack_t **stack, unsigned int line_number __attribute__((unused)));
+void f_pint(stack_t **stack, unsigned int line_number);
+void f_pop(stack_t **stack, unsigned int line_number);
+void f_swap(stack_t **stack, unsigned int line_number);
 void f_add(stack_t **stack, unsigned int line_number);
-void fnop(stack_t **stack, unsigned int line_number);
+void f_nop(stack_t **stack, unsigned int line_number);
 void f_sub(stack_t **stack, unsigned int line_number);
 void f_div(stack_t **stack, unsigned int line_number);
 void f_mul(stack_t **stack, unsigned int line_number);
@@ -78,6 +78,5 @@ int is_digit(char *digit);
 stack_t *add_node(stack_t **stack, const int n);
 void free_stack(int fre, void *args);
 void frees(int fre, void *args);
-void fp_close(int status, void *arg);
 
 #endif /* MONTY_H */

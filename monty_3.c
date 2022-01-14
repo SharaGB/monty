@@ -14,7 +14,7 @@ void f_mod(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	i = (*stack)->n;
-	fpop(stack, line_number);
+	f_pop(stack, line_number);
 	if (i == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);

@@ -2,7 +2,7 @@
 /**
  * is_digit - Checks for a digit
  * @digit: Check number
- * Return: The check number
+ * Return: Always 0
  */
 int is_digit(char *digit)
 {
@@ -50,10 +50,6 @@ stack_t *add_node(stack_t **stack, const int n)
 	{
 		(*stack)->next = new_node;
 		new_node->prev = *stack;
-		/*(*stack)->prev->next = new_node;
-		new_node->prev = (*stack)->prev;
-		(*stack)->prev = new_node;
-		new_node->next = *stack;*/
 	}
 	if (global.data == STACK || global.size == 0)
 	{
@@ -103,19 +99,4 @@ void frees(int fre, void *args)
 	{
 		free(*ptr);
 	}
-}
-
-/**
- * fp_close - Close file
- * @status: status passed to exit
- * @arg: Line arguments
- */
-void fp_close(int status, void *arg)
-{
-	FILE *fp;
-
-	(void)status;
-
-	fp = (FILE *) arg;
-	fclose(fp);
 }

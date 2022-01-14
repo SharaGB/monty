@@ -14,16 +14,16 @@ void f_add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	i += (*stack)->n;
-	fpop(stack, line_number);
+	f_pop(stack, line_number);
 	(*stack)->n += i;
 }
 
 /**
- * fnop - The opcode nop doesn’t do anything.
+ * f_nop - The opcode nop doesn’t do anything.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fnop(stack_t **stack, unsigned int line_number)
+void f_nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
@@ -44,7 +44,7 @@ void f_sub(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	i = (*stack)->n;
-	fpop(stack, line_number);
+	f_pop(stack, line_number);
 	(*stack)->n -= i;
 }
 
@@ -63,7 +63,7 @@ void f_div(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	i = (*stack)->n;
-	fpop(stack, line_number);
+	f_pop(stack, line_number);
 	if (i == 0)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
@@ -87,6 +87,6 @@ void f_mul(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	i = (*stack)->n;
-	fpop(stack, line_number);
+	f_pop(stack, line_number);
 	(*stack)->n *= i;
 }

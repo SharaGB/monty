@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * fpush - Pushes an element to the stack.
+ * f_push - Pushes an element to the stack.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fpush(stack_t **stack, unsigned int line_number)
+void f_push(stack_t **stack, unsigned int line_number)
 {
 	char *digit = NULL;
 	char *delimiter = " \t\n";
@@ -26,11 +26,11 @@ void fpush(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * fpall - Prints all the values on the stack.
+ * f_pall - Prints all the values on the stack.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)))
+void f_pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *tmp = *stack;
 
@@ -42,11 +42,11 @@ void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 }
 
 /**
- * fpint - Prints the value at the top of the stack.
+ * f_pint - Prints the value at the top of the stack.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fpint(stack_t **stack, unsigned int line_number)
+void f_pint(stack_t **stack, unsigned int line_number)
 {
 	if (!stack || !(*stack))
 	{
@@ -57,11 +57,11 @@ void fpint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * fpop - Removes the top element of the stack.
+ * f_pop - Removes the top element of the stack.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fpop(stack_t **stack, unsigned int line_number)
+void f_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *stk = *stack;
 
@@ -79,11 +79,11 @@ void fpop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * fswap - Swaps the top two elements of the stack.
+ * f_swap - Swaps the top two elements of the stack.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fswap(stack_t **stack, unsigned int line_number)
+void f_swap(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 
