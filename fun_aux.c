@@ -106,7 +106,7 @@ void frees(int fre, void *args)
 /**
  * fp_close - Close file
  * @status: status passed to exit
- * @args: Line arguments
+ * @arg: Line arguments
  */
 void fp_close(int status, void *arg)
 {

@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * fmod - Computes the rest of the division of the second top element by the top element.
+ * fmod - Division of the second top element by the top element.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
