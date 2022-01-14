@@ -50,7 +50,6 @@ int main(int argc, char **argv)
 		line++;
 	}
 	free(str);
-	free(func);
 	free_stack(stack);
 	fclose(fp);
 	exit(EXIT_SUCCESS);
