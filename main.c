@@ -48,9 +48,9 @@ int main(int argc, char **argv)
 			get_func(func, &stack, line);
 		}
 		line++;
-
 	}
-	on_exit(frees, &str);
+	free(str);
+	free(func);
 	free_stack(stack);
 	fclose(fp);
 	exit(EXIT_SUCCESS);

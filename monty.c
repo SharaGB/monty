@@ -36,7 +36,7 @@ void f_pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
-		tmp = tmp->next;
+		tmp = tmp->prev;
 	}
 }
 
