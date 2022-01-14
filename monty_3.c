@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * fmod - Division of the second top element by the top element.
+ * f_mod - Division of the second top element by the top element.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fmod(stack_t **stack, unsigned int line_number)
+void f_mod(stack_t **stack, unsigned int line_number)
 {
 	int i;
 

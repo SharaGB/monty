@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * fadd - Adds the top two elements of the stack.
+ * f_add - Adds the top two elements of the stack.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fadd(stack_t **stack, unsigned int line_number)
+void f_add(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
 
@@ -30,11 +30,11 @@ void fnop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * fsub - Subtracts the top element from the second top element.
+ * f_sub - Subtracts the top element from the second top element.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fsub(stack_t **stack, unsigned int line_number)
+void f_sub(stack_t **stack, unsigned int line_number)
 {
 	int i;
 
@@ -49,11 +49,11 @@ void fsub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * fdiv - Divides the second top element by the top element.
+ * f_div - Divides the second top element by the top element.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fdiv(stack_t **stack, unsigned int line_number)
+void f_div(stack_t **stack, unsigned int line_number)
 {
 	int i;
 
@@ -73,11 +73,11 @@ void fdiv(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * fmul - Multiplies the second top element with the top element.
+ * f_mul - Multiplies the second top element with the top element.
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fmul(stack_t **stack, unsigned int line_number)
+void f_mul(stack_t **stack, unsigned int line_number)
 {
 	int i;
 
@@ -87,6 +87,6 @@ void fmul(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	i = (*stack)->n;
-	m_pop(stack, line_number);
+	fpop(stack, line_number);
 	(*stack)->n *= i;
 }

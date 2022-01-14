@@ -9,10 +9,14 @@
 #include <stdlib.h> /* exit, malloc, free, atoi*/
 #include <string.h> /* strtok*/
 #include <ctype.h>	/* isdigit*/
+#include <math.h>
+#include <limits.h>
+#include <stddef.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <unistd.h>
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -56,19 +60,20 @@ typedef struct global_s
 } global_t;
 
 extern global_t global;
-void get_func(stack_t **stack, unsigned int line, char *args);
+void get_func(char *op, stack_t **stack, unsigned int line_number);
 void fpush(stack_t **stack, unsigned int line_number);
 void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)));
 void fpint(stack_t **stack, unsigned int line_number);
 void fpop(stack_t **stack, unsigned int line_number);
 void fswap(stack_t **stack, unsigned int line_number);
-void fadd(stack_t **stack, unsigned int line_number);
+void f_add(stack_t **stack, unsigned int line_number);
 void fnop(stack_t **stack, unsigned int line_number);
-void fsub(stack_t **stack, unsigned int line_number);
-void fdiv(stack_t **stack, unsigned int line_number);
-void fmul(stack_t **stack, unsigned int line_number);
-void fmod(stack_t **stack, unsigned int line_number);
+void f_sub(stack_t **stack, unsigned int line_number);
+void f_div(stack_t **stack, unsigned int line_number);
+void f_mul(stack_t **stack, unsigned int line_number);
+void f_mod(stack_t **stack, unsigned int line_number);
 
+FILE *f_open(char *argv);
 int is_digit(char *digit);
 stack_t *add_node(stack_t **stack, const int n);
 void free_stack(int fre, void *args);

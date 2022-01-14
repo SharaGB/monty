@@ -1,5 +1,10 @@
 #include "monty.h"
 /**
+ * variable global
+ */
+global_t global;
+
+/**
  * f_open - Function for opens file
  * @argv: List of past arguments
  * Return: File open
@@ -16,6 +21,7 @@ FILE *f_open(char *argv)
 	}
 	return (fp);
 }
+
 /**
  * main - Reads a text file and prints in to the POSIX stdout
  * @argc: Check past arguments
@@ -40,13 +46,12 @@ int main(int argc, char **argv)
 	fp = f_open(argv[1]);
 	on_exit(frees, &str);
 	on_exit(free_stack, &stack);
-	/* on_exit(fp_close, fp); */
 	while (getline(&str, &size, fp) != -1)
 	{
 		func = strtok(str, DELIMITER);
 		if (func != NULL && func[0] != '#')
 		{
-			get_op(func, &stack, line);
+			get_func(func, &stack, line);
 		}
 		line++;
 

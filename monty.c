@@ -6,16 +6,16 @@
  */
 void fpush(stack_t **stack, unsigned int line_number)
 {
-	char *arg = NULL;
+	char *digit = NULL;
 	int i = 0;
 
-	arg = strtok(NULL, DELIMITER);
-	if (arg == NULL || check_for_digit(arg))
+	digit = strtok(NULL, DELIMITER);
+	if (!digit || is_digit(digit))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	i = atoi(arg);
+	i = atoi(digit);
 	if (!add_node(stack, i))
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -84,7 +84,6 @@ void fpop(stack_t **stack, unsigned int line_number)
  */
 void fswap(stack_t **stack, unsigned int line_number)
 {
-	int i = 0;
 	stack_t *tmp = *stack;
 
 	if (!*stack || !(*stack)->prev)
