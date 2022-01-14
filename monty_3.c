@@ -35,3 +35,19 @@ void f_rotl(stack_t **stack, unsigned int line_number __attribute__((unused)))
 		*stack = (*stack)->next;
 	}
 }
+
+/**
+ * free_matrix - Free the array
+ *@head: Free the array
+ */
+void free_matrix(char **head)
+{
+	int position = 0;
+
+	while (head[position])
+	{
+		free(head[position]);
+		position++;
+	}
+	free(head);
+}

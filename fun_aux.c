@@ -53,22 +53,6 @@ stack_t *new_node(stack_t **stack, int n)
 }
 
 /**
- * free_matrix - Free the array
- *@head: Free the array
- */
-void free_matrix(char **head)
-{
-	int position = 0;
-
-	while (head[position])
-	{
-		free(head[position]);
-		position++;
-	}
-	free(head);
-}
-
-/**
  * frees - Frees the array
  * @fre: Exit check
  * @args: Line arguments
