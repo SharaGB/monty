@@ -4,29 +4,24 @@
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void fpush(stack_t **stack, unsigned int line_number __attribute__((unused)))
+void fpush(stack_t **stack, unsigned int line_number)
 {
-	stack_t *nn = malloc(sizeof(stack_t));
+	char *arg = NULL;
+	int i = 0;
 
-	if (!nn)
+	arg = strtok(NULL, DELIMITER);
+	if (arg == NULL || check_for_digit(arg))
 	{
-		error_handler("Error: malloc failed", line_number);
+		fprintf(stderr,"L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
-	if (!*stack)
+	i = atoi(arg);
+	if (!add_node(stack, i))
 	{
-		nn->n = global;
-		nn->prev = NULL;
-		nn->next = NULL;
-		*stack = nn;
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		nn->n = global;
-		nn->next = NULL;
-		(*stack)->next = nn;
-		nn->prev = *stack;
-		*stack = nn;
-	}
+	global.size++;
 }
 
 /**
@@ -41,7 +36,7 @@ void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
-		tmp = tmp->prev;
+		tmp = tmp->next;
 	}
 }
 
@@ -52,14 +47,12 @@ void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)))
  */
 void fpint(stack_t **stack, unsigned int line_number)
 {
-	if (!stack)
+	if (!stack || !(*stack))
 	{
-		error_handler("can't pint, stack empty", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		printf("%d\n", (*stack)->n);
-	}
+	printf("%d\n", (*stack)->n);
 }
 
 /**
@@ -71,9 +64,10 @@ void fpop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *stk = *stack;
 
-	if (!*stack)
+	if (!stack || !(*stack))
 	{
-		error_handler("can't pop an empty stack", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 	*stack = (*stack)->prev;
 	if ((*stack) != NULL)
@@ -81,7 +75,6 @@ void fpop(stack_t **stack, unsigned int line_number)
 		(*stack)->next = NULL;
 	}
 	free(stk);
-
 }
 
 /**
@@ -91,13 +84,24 @@ void fpop(stack_t **stack, unsigned int line_number)
  */
 void fswap(stack_t **stack, unsigned int line_number)
 {
-	int top = 0;
+	int i = 0;
+	stack_t *tmp = *stack;
 
 	if (!*stack || !(*stack)->prev)
 	{
-		error_handler("can't swap, stack too short", line_number);
+		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
 	}
-	top = (*stack)->n;
-	(*stack)->n = (*stack)->prev->n;
-	(*stack)->prev->n = top;
+	else
+	{
+		tmp = *stack;
+		tmp = (*stack)->next;
+		tmp->prev = NULL;
+		(*stack)->next = tmp->next;
+		if (tmp->next != NULL)
+			tmp->next->prev = (*stack);
+		tmp->next = (*stack);
+		(*stack)->prev = tmp;
+		*stack = tmp;
+	}
 }
