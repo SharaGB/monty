@@ -43,15 +43,17 @@ stack_t *add_node(stack_t **stack, const int n)
 	new_node->n = n;
 	if (!*stack)
 	{
-		new_node->prev = new_node;
-		new_node->next = new_node;
+		new_node->prev = NULL;
+		new_node->next = NULL;
 	}
 	else
 	{
-		(*stack)->prev->next = new_node;
+		(*stack)->next = new_node;
+		new_node->prev = *stack;
+		/*(*stack)->prev->next = new_node;
 		new_node->prev = (*stack)->prev;
 		(*stack)->prev = new_node;
-		new_node->next = *stack;
+		new_node->next = *stack;*/
 	}
 	if (global.data == STACK || global.size == 0)
 	{

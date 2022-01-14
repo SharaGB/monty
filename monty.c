@@ -7,9 +7,10 @@
 void fpush(stack_t **stack, unsigned int line_number)
 {
 	char *digit = NULL;
+	char *delimiter = " \t\n";
 	int i = 0;
 
-	digit = strtok(NULL, DELIMITER);
+	digit = strtok(NULL, delimiter);
 	if (!digit || is_digit(digit))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
@@ -36,7 +37,7 @@ void fpall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	while (tmp != NULL)
 	{
 		printf("%d\n", tmp->n);
-		tmp = tmp->next;
+		tmp = tmp->prev;
 	}
 }
 
@@ -84,23 +85,17 @@ void fpop(stack_t **stack, unsigned int line_number)
  */
 void fswap(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack;
+	int i = 0;
 
-	if (!*stack || !(*stack)->prev)
+	if (global.size < 2)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
-		tmp = *stack;
-		tmp = (*stack)->next;
-		tmp->prev = NULL;
-		(*stack)->next = tmp->next;
-		if (tmp->next != NULL)
-			tmp->next->prev = (*stack);
-		tmp->next = (*stack);
-		(*stack)->prev = tmp;
-		*stack = tmp;
+		i = (*stack)->n;
+		(*stack)->n = (*stack)->prev->n;
+		(*stack)->prev->n = i;
 	}
 }

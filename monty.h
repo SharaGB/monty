@@ -1,9 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
-#define DELIMITER " \t\n"
 #define _GNU_SOURCE
-#define STACK 0
-#define QUEUE 1
 
 #include <stdio.h>	/* prinf, fprinf, stderr, FILE, feof, fopen*/
 #include <stdlib.h> /* exit, malloc, free, atoi*/
@@ -58,6 +55,9 @@ typedef struct global_s
 	int data;
 	size_t size;
 } global_t;
+
+#define STACK 0
+#define QUEUE 1
 
 extern global_t global;
 void get_func(char *op, stack_t **stack, unsigned int line_number);

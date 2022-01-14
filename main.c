@@ -1,9 +1,5 @@
 #include "monty.h"
-/**
- * variable global
- */
 global_t global;
-
 /**
  * f_open - Function for opens file
  * @argv: List of past arguments
@@ -33,8 +29,9 @@ int main(int argc, char **argv)
 	size_t size = 0;
 	FILE *fp = NULL;
 	stack_t *stack = NULL;
-	unsigned int line = 0;
+	unsigned int line = 1;
 	char *str = NULL, *func = NULL;
+	char *delimiter = " \t\n";
 
 	global.data = 0;
 	global.size = 0;
@@ -48,7 +45,7 @@ int main(int argc, char **argv)
 	on_exit(free_stack, &stack);
 	while (getline(&str, &size, fp) != -1)
 	{
-		func = strtok(str, DELIMITER);
+		func = strtok(str, delimiter);
 		if (func != NULL && func[0] != '#')
 		{
 			get_func(func, &stack, line);
