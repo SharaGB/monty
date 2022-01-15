@@ -31,10 +31,11 @@ void f_mod(stack_t **stack, unsigned int line_number)
 void f_rotl(stack_t **stack, unsigned int line_number)
 {
 	int i = 0;
+	stack_t *tmp = *stack;
 
 	if (*stack)
 	{
-		i = (*stack)->n;
+		i = tmp->n;
 		f_pop(stack, line_number);
 		add_dnodeint_end(stack, i);
 	}
