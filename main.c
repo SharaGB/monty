@@ -32,8 +32,6 @@ int main(int argc, char **argv)
 	stack_t *stack = NULL;
 	char *str = NULL, *func = NULL;
 
-	global.data = 0;
-	global.size = 0;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
