@@ -19,8 +19,10 @@ void get_func(char *args, stack_t **stack, unsigned int line_number)
 		{"nop", f_nop},
 		{"sub", f_sub},
 		{"div", f_div},
+		{"mul", f_mul},
 		{"mod", f_mod},
 		{"rotl", f_rotl},
+		{"rotr", f_rotr},
 		{NULL, NULL}};
 
 	while (get_op[i].opcode != NULL)

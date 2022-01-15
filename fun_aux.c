@@ -37,18 +37,18 @@ stack_t *new_node(stack_t **stack, int n)
 		free(new_node);
 		return (NULL);
 	}
+	if (!stack)
+	{
+		return (NULL);
+	}
 	new_node->n = n;
-	if (!*stack)
-	{
-		new_node->prev = NULL;
-		new_node->next = NULL;
-	}
-	else
-	{
-		(*stack)->next = new_node;
-		new_node->prev = *stack;
-	}
+	new_node->prev = NULL;
+	new_node->next = *stack;
 	*stack = new_node;
+	if (new_node->next)
+	{
+		(*stack)->next->prev = new_node;
+	}
 	return (new_node);
 }
 
@@ -57,11 +57,10 @@ stack_t *new_node(stack_t **stack, int n)
  * @fre: Exit check
  * @args: Line arguments
  */
-void frees(int fre, void *args)
+void frees(int fre __attribute__((unused)), void *args)
 {
 	char **ptr = args;
 
-	(void)fre;
 	if (*ptr != NULL)
 	{
 		free(*ptr);

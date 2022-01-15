@@ -56,9 +56,6 @@ typedef struct global_s
 	size_t size;
 } global_t;
 
-#define STACK 0
-#define QUEUE 1
-
 extern global_t global;
 void get_func(char *op, stack_t **stack, unsigned int line_number);
 void f_push(stack_t **stack, unsigned int line_number);
@@ -67,18 +64,24 @@ void f_pint(stack_t **stack, unsigned int line_number);
 void f_pop(stack_t **stack, unsigned int line_number);
 void f_swap(stack_t **stack, unsigned int line_number);
 void f_add(stack_t **stack, unsigned int line_number);
-void f_nop(stack_t **stack, unsigned int line_number);
+void f_nop(stack_t **stack __attribute__((unused)),
+					unsigned int line_number __attribute__((unused)));
 void f_sub(stack_t **stack, unsigned int line_number);
 void f_div(stack_t **stack, unsigned int line_number);
 void f_mul(stack_t **stack, unsigned int line_number);
 void f_mod(stack_t **stack, unsigned int line_number);
 void f_rotl(stack_t **stack, unsigned int line_number __attribute__((unused)));
+void f_rotr(stack_t **stack, unsigned int line_number __attribute__((unused)));
+void f_stack(stack_t **stack __attribute__((unused)),
+					unsigned int line_number __attribute__((unused)));
+void f_queue(stack_t **stack __attribute__((unused)),
+					unsigned int line_number __attribute__((unused)));
 
 FILE *f_open(char *argv);
 int is_digit(char *digit);
 stack_t *new_node(stack_t **stack, int n);
 void free_matrix(char **head);
-void frees(int fre, void *args);
+void frees(int fre __attribute__((unused)), void *args);
 void free_stack(stack_t *stack);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
 

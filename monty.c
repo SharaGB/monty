@@ -69,12 +69,17 @@ void f_pop(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	*stack = (*stack)->prev;
-	if ((*stack) != NULL)
+	if (stk->next != NULL)
 	{
-		(*stack)->next = NULL;
+		*stack = (*stack)->next;
+		(*stack)->prev = NULL;
+	}
+	else
+	{
+		*stack = NULL;
 	}
 	free(stk);
+	stk = NULL;
 }
 
 /**
@@ -84,17 +89,21 @@ void f_pop(stack_t **stack, unsigned int line_number)
  */
 void f_swap(stack_t **stack, unsigned int line_number)
 {
-	int i = 0;
+	stack_t *tmp = *stack;
 
 	if (global.size < 2)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	else
+	tmp = (*stack)->next;
+	tmp->prev = NULL;
+	(*stack)->next = tmp->next;
+	tmp->next = *stack;
+	(*stack)->prev = NULL;
+	*stack = tmp;
+	if (tmp->next != NULL)
 	{
-		i = (*stack)->n;
-		(*stack)->n = (*stack)->prev->n;
-		(*stack)->prev->n = i;
+		(*stack)->next->prev = tmp;
 	}
 }

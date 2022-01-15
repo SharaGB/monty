@@ -23,10 +23,9 @@ void f_add(stack_t **stack, unsigned int line_number)
  * @stack: Header of the list(stack)
  * @line_number: Line data
  */
-void f_nop(stack_t **stack, unsigned int line_number)
+void f_nop(stack_t **stack __attribute__((unused)),
+					unsigned int line_number __attribute__((unused)))
 {
-	(void)stack;
-	(void)line_number;
 }
 
 /**
