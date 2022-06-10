@@ -9,13 +9,13 @@
 <p><strong>Read or watch</strong>:</p>
 
 <ul>
-<li><a href="/rltoken/56-bDz7IrFgcH02EkGkB3w" title="Google" target="_blank">Google</a> </li>
-<li><a href="/rltoken/9neX6gaN6DoA-ow1INgZqw" title="How do I use extern to share variables between source files in C?" target="_blank">How do I use extern to share variables between source files in C?</a> </li>
+<li><a href="https://www.google.com/webhp?q=stack%20and%20queue" title="Google" target="_blank">Google</a> </li>
+<li><a href="https://stackoverflow.com/questions/1433204/how-do-i-use-extern-to-share-variables-between-source-files" title="How do I use extern to share variables between source files in C?" target="_blank">How do I use extern to share variables between source files in C?</a> </li>
 </ul>
 
 <h2>Learning Objectives</h2>
 
-<p>At the end of this project, you are expected to be able to <a href="/rltoken/S9hXXmjvT8hvNyFQLnSGug" title="explain to anyone" target="_blank">explain to anyone</a>, <strong>without the help of Google</strong>:</p>
+<p>At the end of this project, you are expected to be able to <a href="/https://fs.blog/feynman-learning-technique/" title="explain to anyone" target="_blank">explain to anyone</a>, <strong>without the help of Google</strong>:</p>
 
 <h3>General</h3>
 
@@ -103,7 +103,7 @@ typedef struct instruction_s
 <li>Any error message must be printed on <code>stderr</code>
 
 <ul>
-<li><a href="/rltoken/9RfVU4j7qVbFgGdMkpX2qA" title="Here is a link to a GitHub repository" target="_blank">Here is a link to a GitHub repository</a> that could help you making sure your errors are printed on <code>stderr</code></li>
+<li><a href="https://github.com/sickill/stderred" title="Here is a link to a GitHub repository" target="_blank">Here is a link to a GitHub repository</a> that could help you making sure your errors are printed on <code>stderr</code></li>
 </ul></li>
 </ul>
 
